@@ -24,9 +24,17 @@ public class UserServiceImplement implements UserService {
     private WalletMapper walletMapper;
 
     @Override
-    public User login(String username, String password) {
+    public User login(String username, String password,String role) {
         if (username != null && password != null && password.trim() != "")
-            return userMapper.login(username, CodeUtil.get_MD5_code(password));
+        {
+            System.out.println(role);
+            if(role.equals("2")){
+                System.out.println("管理员登录");
+                return userMapper.login(username, password);
+            }else
+                System.out.println("用户登录");
+                return userMapper.login(username, CodeUtil.get_MD5_code(password));
+        }
         return null;
     }
 

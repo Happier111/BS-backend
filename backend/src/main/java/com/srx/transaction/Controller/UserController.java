@@ -44,7 +44,7 @@ public class UserController {
             String username = user.getUsername();
             String password = user.getPassword();
             if (username != null && password != null) {
-                User login = userService.login(username, password);
+                User login = userService.login(username, password,role);
                 if (login != null) {
                     session.getSession().setAttribute("user", login);
                     if (login.getRole().equals(role)&& login.getRole().equals("0")) {
@@ -54,6 +54,7 @@ public class UserController {
                         BusinessUser businessUser = userService.getBusinessUserById(login.getUserId());
                         return new ResultMessage(LOGIN_SUCCESS, businessUser);
                     } else if (login.getRole().equals(role) && login.getRole().equals("2")) {
+                        System.out.println("管理");
                         return new ResultMessage(LOGIN_SUCCESS, login);
                     } else
                         return new ResultMessage(ERROR_ROLE);

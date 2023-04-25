@@ -15,7 +15,7 @@ public interface UserService extends BaseService{
      * @param password
      * @return
      */
-    User login(String username, String password);
+    User login(String username, String password,String role);
 
 
     /**
